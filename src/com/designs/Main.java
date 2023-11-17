@@ -2,21 +2,17 @@ package com.designs;
 
 import com.designs.memento.Editor;
 import com.designs.memento.History;
+import com.designs.state.Canvas;
+import com.designs.state.ToolType;
 
 public class Main {
     public static void main(String[] args) {
-        var editor = new Editor();
-        var history = new History();
+        Canvas canvas = new Canvas( ToolType.Brush );
+        canvas.mouseUp();
+        canvas.mouseDown();
 
-        editor.setContent("a");
-        history.push( editor.createState() );
-        editor.setContent("b");
-        history.push( editor.createState() );
-        editor.setContent("c");
-
-        editor.restorState( history.pop() );
-        editor.restorState( history.pop() );
-
-        System.out.println(editor.getContent());
+        canvas = new Canvas( ToolType.Eraser );
+        canvas.mouseUp();
+        canvas.mouseDown();
     }
 }
